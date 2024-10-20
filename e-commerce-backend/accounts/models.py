@@ -15,3 +15,19 @@ class User(AbstractUser):
 
     def __str__(self) -> str:
         return f"{self.id},{self.username}"
+
+
+class Tokens(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    created_at = models.DateTimeField(blank=False, null=False)
+    expires_at = models.DateTimeField(blank=False, null=False)
+    token = models.TextField(null=False, blank=False)
+    refresh_token = models.TextField(null=False, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_black_listed = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = "tokens"
+
+    def __str__(self) -> str:
+        return f"{self.user_id.id}:{self.refresh_token}"

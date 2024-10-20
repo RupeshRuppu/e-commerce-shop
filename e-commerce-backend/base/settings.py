@@ -40,12 +40,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     # custom apps
     "accounts.apps.AccountsConfig",
     "apis.apps.ApisConfig",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -60,7 +63,7 @@ ROOT_URLCONF = "base.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["base/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -136,3 +139,5 @@ AUTH_USER_MODEL = "accounts.User"
 
 cred = credentials.Certificate(f"{BASE_DIR}/firebase.json")
 initialize_app(cred, {"storageBucket": getenv("STORAGE_BUCKET")})
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
