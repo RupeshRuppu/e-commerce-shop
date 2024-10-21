@@ -9,7 +9,6 @@ from accounts.models import User, Tokens
 from django.core.exceptions import ObjectDoesNotExist
 from firebase_admin import firestore
 from utils.jwt import generate_tokens
-from django.contrib.auth import authenticate
 from django.db.models import Q
 from jwt import decode
 from jwt.exceptions import ExpiredSignatureError
