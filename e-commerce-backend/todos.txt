@@ -1,0 +1,6 @@
+1. ALLOWED_HOSTS = ["*"] should be modified.
+2. Add tokens to Tokens table. 
+      - testing is required.
+      - add status (500) to error scenarios.
+      - add status (200) to success scenarios.
+      
