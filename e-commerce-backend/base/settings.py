@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from os import getenv
 from dotenv import load_dotenv
+import cloudinary
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -135,3 +136,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "accounts.User"
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
+
+# cloudinary settings
+cloudinary.config(
+    cloud_name=getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=getenv("CLOUDINARY_API_KEY"),
+    api_secret=getenv("CLOUDINARY_SECRET"),
+)
